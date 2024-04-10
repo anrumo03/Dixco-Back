@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Data
 public class AdministradorDTO {
-
     @NotNull
     private Long idAdmin;
     @NotNull
