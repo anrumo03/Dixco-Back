@@ -1,5 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
+import com.example.backend.Modelo.Enumeraciones.NivelAcceso;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,13 +17,13 @@ import lombok.NoArgsConstructor;
 public class Administrador {
 
     @Id
-    private String idAdmin;
+    private Long idAdmin;
     @Column(length=100)
     private String nombreUsuario;
     @Column(length=100)
     private String contrasenia;
-    @Column(length=100)
-    private String nivelAcceso;
+    @Column
+    private NivelAcceso nivelAcceso;
     @NotBlank
     @Email
     private String email;

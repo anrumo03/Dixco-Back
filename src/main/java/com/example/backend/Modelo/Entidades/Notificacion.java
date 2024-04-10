@@ -16,7 +16,7 @@ import java.util.Date;
 public class Notificacion {
 
     @Id
-    private String idNotificacion;
+    private Long idNotificacion;
     @ManyToOne
     private Cliente destinatario;
     private String contenido;

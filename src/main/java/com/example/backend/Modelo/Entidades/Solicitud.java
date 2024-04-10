@@ -1,5 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
+import com.example.backend.Modelo.Enumeraciones.EstadoSolicitud;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -15,10 +16,10 @@ import java.util.Date;
 public class Solicitud {
 
     @Id
-    private String idSolicitud;
+    private Long idSolicitud;
     private String idCliente;
     private String tipo;
     private String detalles;
-    private String estado;
+    private EstadoSolicitud estado;
     private Date fecha;
 }
