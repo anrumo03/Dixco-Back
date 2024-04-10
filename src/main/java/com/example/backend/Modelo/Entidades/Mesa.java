@@ -1,5 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
+import com.example.backend.Modelo.Enumeraciones.EstadoMesa;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -13,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class Mesa {
 
     @Id
-    private String idMesa;
+    private Long idMesa;
     private String ubicacion;
     private int capacidad;
-    private String estado;
+    private EstadoMesa estado;
 }

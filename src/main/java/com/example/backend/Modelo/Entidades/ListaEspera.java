@@ -1,5 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
+import com.example.backend.Modelo.Enumeraciones.EstadoLista;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -17,10 +18,10 @@ import java.util.Set;
 public class ListaEspera {
 
     @Id
-    private String idLista;
+    private Long idLista;
     @ManyToMany
     private Set<Cliente> clientes;
     private String idMesaSolicitada;
     private LocalDateTime fecha;
-    private String estado;
+    private EstadoLista estado;
 }

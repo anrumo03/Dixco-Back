@@ -20,7 +20,7 @@ import java.util.Set;
 public class Cliente {
 
     @Id
-    private String idCliente;
+    private Long idCliente;
     @Column(length=100)
     private String nombre;
     @Column(length=100)
@@ -30,10 +30,11 @@ public class Cliente {
     @NotBlank
     @Email
     private String email;
+    @Column(length=100)
+    private String contrasenia;
     @Column(length=10)
     private String telefono;
     private Date fechaNacimiento;
     @ManyToMany(mappedBy = "usuarios")
     private Set<ListaEspera> listasEspera;
-
 }

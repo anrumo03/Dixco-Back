@@ -1,5 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
+import com.example.backend.Modelo.Enumeraciones.EstadoReserva;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -16,12 +17,12 @@ import java.util.Date;
 public class Reserva {
 
     @Id
-    private String idReserva;
+    private Long idReserva;
     private Date fecha;
     @ManyToOne
     private Cliente cliente;
     @ManyToOne
     private Mesa mesaReservada;
     private int cantidadPersonas;
-    private String estado;
+    private EstadoReserva estado;
 }
