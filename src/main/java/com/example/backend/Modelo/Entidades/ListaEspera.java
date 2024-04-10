@@ -1,6 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
-import com.example.backend.Modelo.Enumeraciones.EstadoLista;
+import com.example.backend.Enumeraciones.EstadoLista;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;

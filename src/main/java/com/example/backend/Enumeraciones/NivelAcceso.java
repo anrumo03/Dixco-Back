@@ -1,4 +1,4 @@
-package com.example.backend.Modelo.Enumeraciones;
+package com.example.backend.Enumeraciones;
 
 public enum NivelAcceso {
     ADMIN(0), AUX(1);
