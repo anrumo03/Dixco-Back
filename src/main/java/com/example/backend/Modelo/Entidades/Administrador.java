@@ -1,6 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
-import com.example.backend.Modelo.Enumeraciones.NivelAcceso;
+import com.example.backend.Enumeraciones.NivelAcceso;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

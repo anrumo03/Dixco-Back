@@ -1,6 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
-import com.example.backend.Modelo.Enumeraciones.EstadoReserva;
+import com.example.backend.Enumeraciones.EstadoReserva;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -17,7 +17,7 @@ import java.util.Date;
 public class Reserva {
 
     @Id
-    private Long idReserva;
+    private String idReserva;
     private Date fecha;
     @ManyToOne
     private Cliente cliente;

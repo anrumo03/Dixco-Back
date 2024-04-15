@@ -20,7 +20,7 @@ import java.util.Set;
 public class Cliente {
 
     @Id
-    private Long idCliente;
+    private String idCliente;
     @Column(length=100)
     private String nombre;
     @Column(length=100)
