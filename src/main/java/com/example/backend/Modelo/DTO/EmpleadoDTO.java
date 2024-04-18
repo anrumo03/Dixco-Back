@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class AdministradorDTO {
+public class EmpleadoDTO {
 
     @NotNull
-    private Long idAdmin;
+    private Long idEmp;
     @NotNull
     private String nombreUsuario;
     @NotNull

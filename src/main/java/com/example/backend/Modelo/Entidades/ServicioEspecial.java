@@ -1,8 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +19,10 @@ public class ServicioEspecial {
     private String nombreServicio;
     private double costoServicio;
     @ManyToMany
+    @JoinTable(
+            name = "solicitud_servicio",
+            joinColumns = @JoinColumn(name = "servicio_id"),
+            inverseJoinColumns = @JoinColumn(name = "solicitud_id")
+    )
     private Set<Solicitud> solicitudes;
 }

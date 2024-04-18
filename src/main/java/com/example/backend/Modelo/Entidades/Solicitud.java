@@ -1,9 +1,7 @@
 package com.example.backend.Modelo.Entidades;
 
 import com.example.backend.Enumeraciones.EstadoSolicitud;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +22,9 @@ public class Solicitud {
     private String detalles;
     private EstadoSolicitud estado;
     private Date fecha;
+    @ManyToOne
+    @JoinColumn(name = "reserva_id")
+    private Reserva reserva;
     @ManyToMany(mappedBy = "servicios")
     private Set<ServicioEspecial> servicioEspecialSet;
 }

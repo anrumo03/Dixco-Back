@@ -1,9 +1,6 @@
 package com.example.backend.Modelo.Entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -35,6 +32,10 @@ public class Cliente {
     @Column(length=10)
     private String telefono;
     private Date fechaNacimiento;
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany(mappedBy = "clientes")
     private Set<ListaEspera> listasEspera;
+    @OneToMany(mappedBy = "cliente")
+    private Set<Reserva> reservas;
+    @OneToMany(mappedBy = "cliente")
+    private Set<Notificacion> notificaciones;
 }
