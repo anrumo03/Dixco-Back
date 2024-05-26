@@ -20,16 +20,13 @@ public class ClienteService {
         return clienteRepo.save(cliente);
     }
 
-    public Optional<Cliente> findByEmailAndPassword(String email, String contrasena) {
-        return clienteRepo.findByEmailAndContrasenia(email, contrasena);
+    public Cliente iniciarSesion(String email, String contrasenia) {
+        Cliente cliente = clienteRepo.findByEmail(email);
+        if (cliente != null && cliente.getContrasenia().equals(contrasenia)) {
+            return cliente;
+        } else {
+            return null;
+        }
     }
 
-    public boolean verifyCredentials(String email, String contrasenia) {
-        Optional<Cliente> cliente = findByEmailAndPassword(email, contrasenia);
-        return cliente.isPresent();
-    }
-
-    public Cliente updateCliente(Cliente cliente) {
-        return clienteRepo.save(cliente);
-    }
 }
