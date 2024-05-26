@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 import java.util.Set;
 @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class ClienteDTO {
 

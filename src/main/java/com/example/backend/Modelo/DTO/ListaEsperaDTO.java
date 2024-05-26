@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class ListaEsperaDTO {
 

@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class MesaDTO {
 

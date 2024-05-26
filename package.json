@@ -1,0 +1,14 @@
+{
+  "name": "proyectodixco",
+  "version": "1.0.0",
+  "description": "proyecto software",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run test && echo \"Build successful\""
+  },
+
+  "author": "",
+  "license": "ISC"
+}

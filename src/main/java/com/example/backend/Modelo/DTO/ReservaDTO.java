@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 
 @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class ReservaDTO {
 

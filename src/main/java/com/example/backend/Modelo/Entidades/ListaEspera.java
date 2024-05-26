@@ -1,9 +1,7 @@
 package com.example.backend.Modelo.Entidades;
 
 import com.example.backend.Modelo.Enumeraciones.EstadoLista;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +17,15 @@ public class ListaEspera {
 
     @Id
     private Long idLista;
+
     @ManyToMany
+    @JoinTable(
+            name = "cliente_lista_espera",
+            joinColumns = @JoinColumn(name = "id_lista_espera"),
+            inverseJoinColumns = @JoinColumn(name = "id_cliente")
+    )
     private Set<Cliente> clientes;
+
     private String idMesaSolicitada;
     private LocalDateTime fecha;
     private EstadoLista estado;
