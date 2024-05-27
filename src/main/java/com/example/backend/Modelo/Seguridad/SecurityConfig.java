@@ -16,6 +16,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new AntPathRequestMatcher("/api/cliente/registrar")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/cliente/iniciarSesion")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/mesas")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/reservas")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/mesas/buscar-mesas/{id}")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/cliente/buscar-correo/{correo}")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/solicitudes/registrar")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/solicitudes/crear")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/solicitudes")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/servicios-especiales")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.disable());

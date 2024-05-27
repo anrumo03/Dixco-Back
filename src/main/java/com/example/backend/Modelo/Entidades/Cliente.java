@@ -36,7 +36,4 @@ public class Cliente {
     @ManyToMany(mappedBy = "clientes")
     private Set<ListaEspera> listasEspera;
 
-    // Add the token field (consider using a long text field)
-    @Column(length = 500)
-    private String token;
 }

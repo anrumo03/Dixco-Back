@@ -41,6 +41,11 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
         // Agrega el nombre del cliente al mapa
         claims.put("nombre", cliente.getNombre());
+        // Agrega el apellido del cliente al mapa
+        claims.put("apellido", cliente.getApellido());
+        // Agrega el teléfono del cliente al mapa
+        claims.put("telefono", cliente.getTelefono());
+
         // Construye el token con el nombre del cliente en el payload
         return Jwts.builder()
                 .setClaims(claims) // Incluir los claims

@@ -18,4 +18,5 @@ public class Mesa {
     private String ubicacion;
     private int capacidad;
     private EstadoMesa estado;
+
 }

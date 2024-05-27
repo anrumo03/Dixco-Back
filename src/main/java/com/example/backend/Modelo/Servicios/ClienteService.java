@@ -16,6 +16,9 @@ public class ClienteService {
     private ClienteRepo clienteRepo;
 
     public Cliente registrarCliente(Cliente cliente) {
+        if (clienteRepo.findByEmail(cliente.getEmail()) != null) {
+            throw new RuntimeException("Este correo ya está registrado");
+        }
         cliente.setIdCliente(null);
         return clienteRepo.save(cliente);
     }
@@ -27,6 +30,10 @@ public class ClienteService {
         } else {
             return null;
         }
+    }
+
+    public Cliente buscarClientePorCorreo(String email) {
+        return clienteRepo.findByEmail(email);
     }
 
 }
