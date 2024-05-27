@@ -16,6 +16,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new AntPathRequestMatcher("/api/cliente/registrar")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/cliente/iniciarSesion")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/cliente/restablecer/contrasenia")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/verificar-correo/{correo}")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/mesas")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/reservas")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/mesas/buscar-mesas/{id}")).permitAll()
@@ -24,6 +26,10 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/api/solicitudes/crear")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/solicitudes")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/servicios-especiales")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/lista-espera/apuntarse")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/lista-espera/asociar-cliente/{idListaEspera}/{idCliente}")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/obtener/reservas/cliente")).permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.disable());

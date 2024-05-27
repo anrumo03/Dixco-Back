@@ -1,6 +1,7 @@
 package com.example.backend.Modelo.Utils;
 
 import com.example.backend.Modelo.Entidades.Cliente;
+import com.example.backend.Modelo.Entidades.Administrador;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -37,22 +38,33 @@ public class JwtService {
     }
 
     public String generarToken(Cliente cliente) {
-        // Crea un mapa para los claims del token
         Map<String, Object> claims = new HashMap<>();
-        // Agrega el nombre del cliente al mapa
         claims.put("nombre", cliente.getNombre());
-        // Agrega el apellido del cliente al mapa
         claims.put("apellido", cliente.getApellido());
-        // Agrega el teléfono del cliente al mapa
         claims.put("telefono", cliente.getTelefono());
+        claims.put("role", "CLIENTE");
 
-        // Construye el token con el nombre del cliente en el payload
         return Jwts.builder()
-                .setClaims(claims) // Incluir los claims
-                .setSubject(cliente.getIdCliente().toString()) // Establecer el ID del cliente como el sujeto del token
-                .setIssuedAt(new Date()) // Establecer la fecha de emisión
-                .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 1000)) // Establecer la fecha de expiración (1 hora)
-                .signWith(key, SignatureAlgorithm.HS512) // Firmar el token usando el secreto y el algoritmo HS512
+                .setClaims(claims)
+                .setSubject(cliente.getIdCliente().toString())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
+                .signWith(key, SignatureAlgorithm.HS512)
+                .compact();
+    }
+
+    public String generarToken(Administrador administrador) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("nombreUsuario", administrador.getNombreUsuario());
+        claims.put("nivelAcceso", administrador.getNivelAcceso().toString());
+        claims.put("role", "ADMIN");
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(administrador.getIdAdmin().toString())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
+                .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
     }
 }

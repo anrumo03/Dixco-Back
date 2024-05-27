@@ -9,8 +9,7 @@
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
-    import java.util.HashMap;
-
+    import java.util.Map;
 
     @RestController
     @RequestMapping("/api/cliente")
@@ -19,13 +18,6 @@
 
         @Autowired
         private ClienteService clienteService;
-
-        private final ClienteRepo clienteRepo;
-
-        @Autowired
-        public ClienteController(ClienteRepo clienteRepo) {
-            this.clienteRepo = clienteRepo;
-        }
 
         @Autowired
         private JwtService jwtService;
@@ -41,6 +33,7 @@
             }
         }
         @PostMapping("/iniciarSesion")
+        @CrossOrigin(origins = "http://localhost:3000")
         public ResponseEntity<?> iniciarSesion(@RequestBody Cliente cliente) {
             Cliente clienteEncontrado = clienteService.iniciarSesion(cliente.getEmail(), cliente.getContrasenia());
             if (clienteEncontrado != null) {
@@ -53,6 +46,7 @@
         }
 
         @GetMapping("/buscar-correo/{correo}")
+        @CrossOrigin(origins = "http://localhost:3000")
         public ResponseEntity<Cliente> buscarClientePorCorreo(@PathVariable String correo) {
             Cliente cliente = clienteService.buscarClientePorCorreo(correo);
             if (cliente != null) {
@@ -62,5 +56,22 @@
             }
         }
 
-    
+        @PutMapping("/restablecer/contrasenia")
+        public ResponseEntity<String> restablecerContrasena(@RequestBody Map<String, String> requestBody) {
+            String email = requestBody.get("email");
+            String nuevaContrasenia = requestBody.get("nuevaContrasenia");
+
+            // Verificar si el correo y la contraseña coinciden
+            Cliente cliente = clienteService.buscarClientePorCorreo(email);
+            if (cliente != null) {
+                cliente.setContrasenia(nuevaContrasenia);
+                clienteService.guardarUsuario(cliente);
+                return ResponseEntity.ok("Contraseña actualizada exitosamente");
+            } else {
+                // Si el usuario no existe o la contraseña no coincide, devuelve un mensaje de error
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Correo o contraseña incorrectos");
+            }
+        }
+
+
     }

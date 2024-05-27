@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.example.backend.Modelo.Entidades.Reserva;
 import com.example.backend.Modelo.Repositorios.ReservaRepo;
 
+import java.util.List;
+
 @Service
 public class ReservaService {
 
@@ -28,5 +30,10 @@ public class ReservaService {
         reservaRepository.save(nuevaReserva); // Guarda la reserva actualizada en la base de datos
 
         return nuevaReserva;
+    }
+
+    // Método para buscar reservas por correo electrónico del cliente
+    public List<Reserva> obtenerReservasPorCorreo(String email) {
+        return reservaRepository.findByClienteEmail(email);
     }
 }

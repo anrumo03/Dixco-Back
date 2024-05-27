@@ -36,4 +36,8 @@ public class ClienteService {
         return clienteRepo.findByEmail(email);
     }
 
+    public Cliente guardarUsuario(Cliente cliente) {
+        return clienteRepo.save(cliente);
+    }
+
 }

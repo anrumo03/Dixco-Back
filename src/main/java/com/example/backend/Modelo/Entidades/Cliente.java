@@ -3,9 +3,7 @@ package com.example.backend.Modelo.Entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.Set;
@@ -35,5 +33,13 @@ public class Cliente {
     private Date fechaNacimiento;
     @ManyToMany(mappedBy = "clientes")
     private Set<ListaEspera> listasEspera;
+
+    public Set<ListaEspera> getListaEspera() {
+        return listasEspera;
+    }
+
+    public void setListaEspera(Set<ListaEspera> listasEspera) {
+        this.listasEspera = listasEspera;
+    }
 
 }
