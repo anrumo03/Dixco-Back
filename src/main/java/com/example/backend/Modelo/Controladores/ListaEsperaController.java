@@ -68,6 +68,15 @@ public class ListaEsperaController {
         }
     }
 
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarListaEspera(@PathVariable Long id) {
+        boolean eliminado = listaEsperaService.eliminarListaEspera(id);
+        if (eliminado) {
+            return new ResponseEntity<>("Lista de espera eliminada correctamente", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Lista de espera no encontrada", HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
 

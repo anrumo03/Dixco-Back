@@ -80,6 +80,15 @@ public class ListaEsperaService {
     }
 
 
+    public boolean eliminarListaEspera(Long id) {
+        if (listaEsperaRepo.existsById(id)) {
+            listaEsperaRepo.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 

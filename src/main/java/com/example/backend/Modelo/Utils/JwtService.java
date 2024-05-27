@@ -42,6 +42,8 @@ public class JwtService {
         claims.put("nombre", cliente.getNombre());
         claims.put("apellido", cliente.getApellido());
         claims.put("telefono", cliente.getTelefono());
+        claims.put("contrasenia", cliente.getContrasenia());
+        claims.put("direccion", cliente.getDireccion());
         claims.put("role", "CLIENTE");
 
         return Jwts.builder()
