@@ -29,6 +29,7 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/api/lista-espera/apuntarse")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/lista-espera/asociar-cliente/{idListaEspera}/{idCliente}")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/obtener/reservas/cliente")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/lista-espera/cliente")).permitAll()
 
                         .anyRequest().authenticated()
                 )

@@ -1,15 +1,19 @@
 package com.example.backend.Modelo.Servicios;
 import com.example.backend.Modelo.Entidades.Cliente;
+import com.example.backend.Modelo.Entidades.ClienteListaEspera;
 import com.example.backend.Modelo.Entidades.ListaEspera;
 import com.example.backend.Modelo.Entidades.Reserva;
 import com.example.backend.Modelo.Enumeraciones.EstadoLista;
 import com.example.backend.Modelo.Enumeraciones.EstadoReserva;
+import com.example.backend.Modelo.Repositorios.ClienteListaRepo;
 import com.example.backend.Modelo.Repositorios.ClienteRepo;
 import com.example.backend.Modelo.Repositorios.ListaEsperaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,6 +24,9 @@ public class ListaEsperaService {
     private ListaEsperaRepo listaEsperaRepo;
     @Autowired
     private ClienteRepo clienteRepo;
+    @Autowired
+    private ClienteListaRepo clienteListaEsperaRepo;
+
 
     public ListaEspera crearLista(ListaEspera lista) {
 
@@ -35,32 +42,42 @@ public class ListaEsperaService {
     }
 
     public void asociarListaEsperaACliente(Long idListaEspera, Long idCliente) {
-        // Buscar la lista de espera y el cliente en la base de datos
         Optional<ListaEspera> listaEsperaOptional = listaEsperaRepo.findById(idListaEspera);
         Optional<Cliente> clienteOptional = clienteRepo.findById(idCliente);
 
-        // Verificar si la lista de espera y el cliente existen
         if (listaEsperaOptional.isPresent() && clienteOptional.isPresent()) {
             ListaEspera listaEspera = listaEsperaOptional.get();
             Cliente cliente = clienteOptional.get();
 
-            // Obtener el conjunto actual de listas de espera del cliente
-            Set<ListaEspera> listasEsperaCliente = cliente.getListaEspera();
+            // Crear un nuevo objeto ClienteListaEspera
+            ClienteListaEspera clienteListaEspera = new ClienteListaEspera();
+            clienteListaEspera.setCliente(cliente);
+            clienteListaEspera.setListaEspera(listaEspera);
 
-            // Agregar la nueva lista de espera al conjunto
-            listasEsperaCliente.add(listaEspera);
-
-            // Actualizar el conjunto en el cliente
-            cliente.setListaEspera(listasEsperaCliente);
-
-            // Guardar el cliente actualizado en la base de datos
-            clienteRepo.save(cliente);
+            // Persistir la asociación en la base de datos
+            clienteListaEsperaRepo.save(clienteListaEspera);
         } else {
             // Manejar el caso en el que la lista de espera o el cliente no existen
-            // Por ejemplo, lanzar una excepción o manejar el error de otra manera
         }
     }
 
+    public List<ListaEspera> obtenerListasEsperaPorEmail(String email) {
+        // Buscar al cliente por su correo electrónico
+        Optional<Cliente> clienteOptional = clienteRepo.findOptionalClienteByEmail(email);
+
+        if (clienteOptional.isPresent()) {
+            Cliente cliente = clienteOptional.get();
+            // Obtener las listas de espera asociadas a través de la tabla intermedia
+            List<ListaEspera> listasEspera = new ArrayList<>();
+            for (ClienteListaEspera clienteListaEspera : clienteListaEsperaRepo.findByCliente(cliente)) {
+                listasEspera.add(clienteListaEspera.getListaEspera());
+            }
+            return listasEspera;
+        } else {
+            // Manejar el caso en el que el cliente no existe
+            return List.of();
+        }
+    }
 
 
 }
